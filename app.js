@@ -12,43 +12,43 @@ const ui = new UI();
 eventListeners();
 
 function eventListeners() {
-	githubForm.addEventListener("submit", getData);
-	clearLastUsers.addEventListener("click", clearAllSearched);
+    githubForm.addEventListener("submit", getData);
+    clearLastUsers.addEventListener("click", clearAllSearched);
 
-	document.addEventListener("DOMContentLoaded", getAllSearched);
+    document.addEventListener("DOMContentLoaded", getAllSearched);
 }
 
 function getData(e) {
-	//trim ile gereksiz boşlukları temizliyoruz
-	let username = nameInput.value.trim();
+    //trim ile gereksiz boşlukları temizliyoruz
+    let username = nameInput.value.trim();
 
-	if (username === "") {
-		alert("Geçerli bir kullanıcı adı giriniz!");
-	} else {
-		github
-			.getGithubData(username)
-			.then((response) => {
-				// user bulunamazsa
-				if (response.user.message === "Not Found") {
-					//hata mesajı
-					ui.showError("Kullanıcı bulunamadı!");
-				} else {
-               ui.showUserInfo(response.user);
-               ui.showRepoInfo(response.repo);
-				}
-			})
-			.catch((err) => ui.showError(err));
-	}
+    if (username === "") {
+        alert("Geçerli bir kullanıcı adı giriniz!");
+    } else {
+        github
+            .getGithubData(username)
+            .then((response) => {
+                // user bulunamazsa
+                if (response.user.message === "Not Found") {
+                    //hata mesajı
+                    ui.showError("Kullanıcı bulunamadı!");
+                } else {
+                    ui.showUserInfo(response.user);
+                    ui.showRepoInfo(response.repo);
+                }
+            })
+            .catch((err) => ui.showError(err));
+    }
 
-	ui.clearInput();
+    ui.clearInput();
 
-	e.preventDefault();
+    e.preventDefault();
 }
 
 function clearAllSearched() {
-	//tüm arananları temizle
+    //tüm arananları temizle
 }
 
 function getAllSearched() {
-	//arananları storage al ui ekle
+    //arananları storage al ui ekle
 }
