@@ -33,8 +33,8 @@ function getData(e) {
 					//hata mesajı
 					console.log("Username hatalı");
 				} else {
-					console.log(response.user);
-				}
+               ui.showUserInfo(response.user);
+            }
 			})
 			.catch((err) => console.log("err :>> ", err));
 	}
