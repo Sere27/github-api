@@ -18,7 +18,7 @@ function eventListeners() {
 
 function getData(e) {
 	//trim ile gereksiz boşlukları temizliyoruz
-	let username = nameInput.value.trim;
+	let username = nameInput.value.trim();
 
 	if (username === "") {
 		alert("Geçerli bir kullanıcı adı giriniz!");
