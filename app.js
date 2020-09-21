@@ -25,7 +25,15 @@ function getData(e) {
 	} else {
 		github
 			.getGithubData(username)
-			.then((response) => console.log(response.user))
+			.then((response) => {
+				// user bulunamazsa
+				if (response.user.message === "Not Found") {
+					//hata mesajı
+					console.log("Username hatalı");
+				} else {
+					console.log(response.user);
+				}
+			})
 			.catch((err) => console.log("err :>> ", err));
 	}
 
