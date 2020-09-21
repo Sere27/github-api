@@ -33,6 +33,9 @@ function getData(e) {
                     //hata mesajı
                     ui.showError("Kullanıcı bulunamadı!");
                 } else {
+                    //ui olanı storagedan sonra yazarsak ilk eklenip sonra test edecek
+                    ui.addSearchedUsersToUI(username);
+                    Storage.addSearchedUsersToStorage(username);
                     ui.showUserInfo(response.user);
                     ui.showRepoInfo(response.repo);
                 }
@@ -47,8 +50,20 @@ function getData(e) {
 
 function clearAllSearched() {
     //tüm arananları temizle
+    if (confirm("Emin misiniz?")) {
+        //Silme işlemleri
+        Storage.clearAllSearchedUsersFromStorage();
+        ui.clearAllSearchedFromUI();
+    }
 }
 
 function getAllSearched() {
     //arananları storage al ui ekle
+    let users = Storage.getSearchedUsersFromStorage();
+
+    let result = "";
+    users.forEach((user) => {
+        result += `<li class ="list-group-item">${user}</li>`;
+    });
+    lastUsers.innerHTML = result;
 }

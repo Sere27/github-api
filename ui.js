@@ -86,4 +86,21 @@ class UI {
             div.remove();
         }, 2000);
     }
+
+    addSearchedUsersToUI(username) {
+        let users = Storage.getSearchedUsersFromStorage();
+        if (users.indexOf(username) === -1) {
+            const li = document.createElement("li");
+            li.className = "list-group-item";
+            li.textContent = username;
+
+            this.lastUsers.appendChild(li);
+        }
+    }
+
+    clearAllSearchedFromUI() {
+        while (this.lastUsers.firstElementChild !== null) {
+            this.lastUsers.removeChild(this.lastUsers.firstElementChild);
+        }
+    }
 }
