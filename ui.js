@@ -5,6 +5,8 @@ class UI {
 		this.repoDiv = document.getElementById("repos");
 		this.lastUsers = document.getElementById("last-users");
 		this.inputField = document.getElementById("githubname");
+
+		this.cardBody = document.querySelector(".card-body");
 	}
 
 	clearInput() {
@@ -47,5 +49,21 @@ class UI {
             </div>                           
          </div>
       </div>`;
+	}
+
+   showRepoInfo(user){
+      
+   }
+
+	showError(message) {
+		const div = document.createElement("div");
+		div.className = "alert alert-danger";
+		div.textContent = message;
+
+		this.cardBody.appendChild(div); // card body nin en sonuna ekledik
+
+		setTimeout(() => {
+			div.remove();
+		}, 2000);
 	}
 }

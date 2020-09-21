@@ -31,12 +31,13 @@ function getData(e) {
 				// user bulunamazsa
 				if (response.user.message === "Not Found") {
 					//hata mesajı
-					console.log("Username hatalı");
+					ui.showError("Kullanıcı bulunamadı!");
 				} else {
                ui.showUserInfo(response.user);
-            }
+               ui.showRepoInfo(response.repo);
+				}
 			})
-			.catch((err) => console.log("err :>> ", err));
+			.catch((err) => ui.showError(err));
 	}
 
 	ui.clearInput();
